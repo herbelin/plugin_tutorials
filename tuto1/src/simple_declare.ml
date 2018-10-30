@@ -16,7 +16,7 @@ let edeclare ident (_, poly, _ as k) ~opaque sigma udecl body tyopt imps hook =
 let packed_declare_definition ~poly ident value_with_constraints =
   let body, ctx = value_with_constraints in
   let sigma = Evd.from_ctx ctx in
-  let k = (Decl_kinds.Global, poly, Decl_kinds.Definition) in
+  let k = (Decl_kinds.Global Decl_kinds.ImportDefaultBehavior, poly, Decl_kinds.Definition) in
   let udecl = UState.default_univ_decl in
   let nohook = Lemmas.mk_hook (fun _ x -> ()) in
   ignore (edeclare ident k ~opaque:false sigma udecl body None [] nohook)
